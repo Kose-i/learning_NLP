@@ -5,7 +5,7 @@ from nltk.book import *
 #text1.concordance("monstrous") # Find keyword
 #text1.similar("monstrous") # 同じ文脈
 #text2.common_contexts(["monstrous", "very"]) # 共通に使われる文脈
-#text4.dispersion_plot(["citizens", "democracy", "freedom", "duties", "America"])
+text4.dispersion_plot(["citizens", "democracy", "freedom", "duties", "America"])
 #text3.generate(words=None)
 #print(len(text3))
 #print(sorted(set(text3)))
