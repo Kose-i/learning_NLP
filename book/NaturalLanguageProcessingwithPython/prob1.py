@@ -137,10 +137,46 @@ def q23():
             print(word)
 
 def q24():
-    for word in text7:
+    word_ize_list = list()
+    word_z_list   = list()
+    word_pt_list  = list()
+    for word in set(text6):
         if len(word)>=3 and word[-3:] == "ize":
-            if word.count("z") >= 1: #and word.count("pt") >= 1:
-                print(word)
+            word_ize_list.append(word)
+        if len(word)>=1 and word.count("z") >= 1:
+            word_z_list.append(word)
+        if len(word)>=2 and word.count("pt") >= 1:
+            word_pt_list.append(word)
+    print(word_ize_list)
+    print(word_z_list)
+    print(word_pt_list)
+
+def q25():
+    word_list = ['she', 'sells', 'sea', 'shells', 'by', 'the', 'sea', 'shore']
+    for word in set(word_list):
+        if len(word)>=2 and word[0] == 's' and word[1] == 'h':
+            print(word)
+    for word in set(word_list):
+        if len(word)>=4:
+            print(word)
+
+def q26():
+    sum_word_len = sum([len(w) for w in text1])
+    avg_word_len = sum_word_len / len(text1)
+    print(avg_word_len)
+
+def q27():
+    def vocab_size(text):
+        return (len(set(text)))
+    print(vocab_size(text1))
+
+def q28():
+    def percent(word, text):
+        return (text.count(word)/len(text))*100
+    print(percent('.', text3))
+
+def q29():
+    print(set(sent3) < set(text1))
 
 if __name__=='__main__':
     #q1()
@@ -166,4 +202,9 @@ if __name__=='__main__':
     #q21()
     #q22()
     #q23()
-    q24()
+    #q24()
+    #q25()
+    #q26()
+    #q27()
+    #q28()
+    q29()
