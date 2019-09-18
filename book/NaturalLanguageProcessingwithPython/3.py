@@ -182,7 +182,145 @@ import os
 #hobbies_learned.findall(r"<\w*><and><other><\w*s>")
 #tokens = nltk.word_tokenize(raw)
 
-#P113
-raw = """DENNIS: Lsten, strange women lying in ponds distributing swords
-is no basis for a system of government. Supreme executive power derives from
-a mandate from the masses, not from some farcical aquatic ceremony."""
+#raw = """DENNIS: Lsten, strange women lying in ponds distributing swords
+#is no basis for a system of government. Supreme executive power derives from
+#a mandate from the masses, not from some farcical aquatic ceremony."""
+#porter = nltk.PorterStemmer()
+#lancaster = nltk.LancasterStemmer()
+#tokens = nltk.word_tokenize(raw)
+#print([porter.stem(t) for t in tokens])
+#print([lancaster.stem(t) for t in tokens])
+#wnl = nltk.WordNetLemmatizer()
+#print([wnl.lemmatize(t) for t in tokens])
+
+#raw = """'When I'M a Dunchess,' she said to herself, (not in a very hopeful
+#tone though), 'I won't have any pepper in my kitchen AT ALL. Soup does very
+#well without--Maybe it's always pepper that makes people that makes people hot-tempered,'..."""
+#print(re.split(r' ', raw))
+#print(re.split(r'[ \t\n]+', raw))
+#print(re.split(r'\W+', raw))
+#print(re.findall(r'\W+|\S\w*', raw))
+#print(re.findall(r"\w+(?:[-']\w+)*|'|[-.(]+|\S\w*", raw))
+#text = 'That U.S.A. poster-print costs $12.40...'
+#pattern = r'''(?x)
+#([A-Z]\.)+
+#|\w+(-\w+)*
+#|\$?\d+(\.\d+)?%?
+#|\.\.\.
+#|[][.,;"'?():-_`]
+#'''
+#print(nltk.regexp_tokenize(text, pattern))
+
+#print(len(nltk.corpus.brown.words())/len(nltk.corpus.brown.sents()))
+#sent_tokenizer=nltk.data.load('tokenizers/punkt/english.pickle')
+#text = nltk.corpus.gutenberg.raw('chesterton-thursday.txt')
+#sents = sent_tokenizer.tokenize(text)
+#pprint.pprint(sents[171:181])
+#def segment(text, segs):
+#    words = []
+#    last = 0
+#    for i in range(len(segs)):
+#        if segs[i] == '1':
+#            words.append(text[last:i+1])
+#            last = i+1
+#    words.append(text[last:])
+#    return words
+#text = "doyouseethekittyseethedoggydoyoulikethekittylikethedoggy"
+#seg1 = "0000000000000001000000000010000000000000000100000000000"
+#seg2 = "0100100100100001001001000010100100010010000100010010000"
+#print(segment(text, seg1))
+#print(segment(text, seg2))
+#def evaluate(text, segs):
+#    words = segment(text, segs)
+#    text_size = len(words)
+#    lexicon_size = len(' '.join(list(set(words))))
+#    return text_size + lexicon_size
+##text = "doyouseethekittyseethedoggydoyoulikethekittylikethedoggy"
+#seg3 = "0000100100000011001000000110000100010000001100010000001"
+#print(segment(text, seg3))
+#print(evaluate(text, seg1))
+#print(evaluate(text, seg2))
+#print(evaluate(text, seg3))
+#from random import randint
+#def flip(segs, pos):
+#    return segs[:pos] + str(1 - int(segs[pos])) + segs[pos+1:]
+#def flip_n(segs, n):
+#    for i in range(n):
+#        segs = flip(segs, randint(0, len(segs) - 1))
+#    return segs
+#def anneal(text, segs, iterations, cooling_rate):
+#    temperature = float(len(segs))
+#    while temperature > 0.5:
+#        best_segs, best = segs, evaluate(text, segs)
+#        for i in range(iterations):
+#            guess = flip_n(segs, int(round(temperature)))
+#            score = evaluate(text, guess)
+#            if score < best:
+#                best, best_segs = score, guess
+#        score, segs = best, best_segs
+#        temperature = temperature / cooling_rate
+#        print(evaluate(text, segs), segment(text, segs))
+#    print()
+#    return segs
+#anneal(text, seg1, 5000, 1.2)
+
+silly = ['We', 'called', 'him', 'Tortoise', 'because', 'he', 'taught', 'us', '.']
+print(' '.join(silly))
+print(';'.join(silly))
+print(''.join(silly))
+word = 'cat'
+sentence = """hello
+world"""
+print(word)
+print(sentence)
+fdist = nltk.FreqDist(['dog', 'cat', 'dog', 'cat', 'dog', 'snake', 'dog', 'cat'])
+for word in fdist:
+    print(word, '->', fdist[word], ';',)
+for word in fdist:
+    print('%s->%d'%(word, fdist[word]))
+template = 'Lee wants a %s right now'
+menu = ['sandwich', 'spam fritter', 'pancake']
+for snack in menu:
+    print(template%snack)
+print('%6s'%'dog')
+print('%-6s'%'dog')
+width = 6
+print('%-*s'%(width, 'dog'))
+count, total = 3205, 9375
+"accuracy for %d words: %2.4f%%" %(total, 100*count/total)
+def tabulate(cfdist, words, categories):
+    print('%-16s'%'Categories',)
+    for word in words:
+        print('%6s'%word,)
+    print()
+    for category in categories:
+        print('%-16s'%category, )
+        for word in words:
+            print('%6d'%cfdist[category][word],)
+        print()
+from nltk.corpus import brown
+cfd = nltk.ConditionalFreqDist(
+      (genre, word)
+      for genre in brown.categories()
+      for word in brown.words(categories=genre)
+)
+genres = ['news', 'religion', 'hobbies', 'science_fiction', 'romance', 'humor']
+modals = ['can', 'could', 'may', 'might', 'must', 'will']
+print(tabulate(cfd, modals, genres))
+output_file = open('output.txt', 'w')
+words = set(nltk.corpus.genesis.words('english-kjv.txt'))
+for word in sorted(words):
+    output_file.write(word+"\n")
+print(len(words))
+print(str(len(words)))
+output_file.write(str(len(words)) + "\n")
+output_file.close()
+saying = ['After', 'all', 'is', 'said', 'and', 'done', ',', 'more', 'is', 'said', 'than', 'done', '.']
+for word in saying:
+    print(word, '('+str(len(word))+'),',)
+from textwrap import fill
+format = '%s (%d),'
+pieces = [format % (word, len(word)) for word in saying]
+output = ' '.join(pieces)
+wrapped = fill(output)
+print(wrapped)
