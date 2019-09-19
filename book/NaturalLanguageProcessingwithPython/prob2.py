@@ -185,6 +185,36 @@ def q18():
     cfd = nltk.ConditionalFreqDist(target_bigrams)
     cfd.plot()
 
+def q19():
+    pass
+
+def q20():
+    pass
+
+def q21():
+    pass
+
+def q22():
+    pass
+
+def q23():
+    pass
+
+def q24():
+    pass
+
+def q25():
+    pass
+
+def q26():
+    pass
+
+def q27():
+    pass
+
+def q28():
+    pass
+
 if __name__=='__main__':
     #q1()
     #q2()
