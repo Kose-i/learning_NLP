@@ -430,37 +430,77 @@
 #print(virahanka3(4))
 #print(virahanka4(4))
 
-import nltk, pylab, matplotlib
-colors = 'rgbcmyk' # Red, Green, Blue, Magenta, Yellow, Black
-def bar_chart(categories, words, counts):
-    "Plot a bar chart showing counts for each word by category"
-    ind = pylab.arange(len(words))
-    width = 1/ (len(categories) + 1)
-    bar_groups = []
-    for c in range(len(categories)):
-        bars = pylab.bar(ind+c*width, counts[categories[c]], width, color=colors[c % len(colors)])
-        bar_groups.append(bars)
-        pylab.xticks(ind+width, words)
-        pylab.ylabel('Freqency')
-        pylab.legend([b[0] for b in bar_groups], categories, loc='upper left')
-        pylab.title('Freqency of Six Verbs by Genre')
-        pylab.show()
-genres = ['news', 'religion', 'hobbies', 'government', 'adventure']
-modals = ['can', 'could', 'may', 'might', 'must', 'will']
-cfdist = nltk.ConditionalFreqDist(
-            (genre, word)
-            for genre in genres
-            for word in nltk.corpus.brown.words(categories=genre)
-            if word in modals
-)
-counts = {}
-for genre in genres:
-    counts[genre] = [cfdist[genre][word] for word in modals]
-bar_chart(genres, modals, counts)
-matplotlib.use('Agg')
-pylab.savefig('modals.png')
-print('Content-Type: text/html')
-print()
-print('<html><body>')
-print('<img src="modals.png"/>')
-print('</body></html>')
+#import nltk, pylab, matplotlib
+#colors = 'rgbcmyk' # Red, Green, Blue, Magenta, Yellow, Black
+#def bar_chart(categories, words, counts):
+#    "Plot a bar chart showing counts for each word by category"
+#    ind = pylab.arange(len(words))
+#    width = 1/ (len(categories) + 1)
+#    bar_groups = []
+#    for c in range(len(categories)):
+#        bars = pylab.bar(ind+c*width, counts[categories[c]], width, color=colors[c % len(colors)])
+#        bar_groups.append(bars)
+#        pylab.xticks(ind+width, words)
+#        pylab.ylabel('Freqency')
+#        pylab.legend([b[0] for b in bar_groups], categories, loc='upper left')
+#        pylab.title('Freqency of Six Verbs by Genre')
+#        pylab.show()
+#genres = ['news', 'religion', 'hobbies', 'government', 'adventure']
+#modals = ['can', 'could', 'may', 'might', 'must', 'will']
+#cfdist = nltk.ConditionalFreqDist(
+#            (genre, word)
+#            for genre in genres
+#            for word in nltk.corpus.brown.words(categories=genre)
+#            if word in modals
+#)
+#counts = {}
+#for genre in genres:
+#    counts[genre] = [cfdist[genre][word] for word in modals]
+#bar_chart(genres, modals, counts)
+#matplotlib.use('Agg')
+#pylab.savefig('modals.png')
+#print('Content-Type: text/html')
+#print()
+#print('<html><body>')
+#print('<img src="modals.png"/>')
+#print('</body></html>')
+#import networkx as nx
+#import matplotlib
+#from nltk.corpus import wordnet as wn
+#def traverse(graph, start, node):
+#    graph.depth[node.name] = node.shortest_path_distance(start)
+#    for child in node.hyponyms():
+#        graph.add_edge(node.name, child.name)
+#        traverse(graph, start, child)
+#def hyponym_graph(start):
+#    G = nx.Graph()
+#    G.depth = {}
+#    traverse(G, start, start)
+#    return G
+#def graph_draw(graph):
+#    nx.draw_graphviz(graph,
+#        node_size=[16*graph.degree(n) for n in graph],
+#        node_color=[graph.depth[n] for n in graph],
+#        with_labels = False)
+#    matplotlib.pyplot.show()
+#dog = wn.synset('dog.n.01')
+#graph = hyponym_graph(dog)
+#graph_draw(graph)
+import csv
+input_file = open("lexicon.csv", "rb")
+for row in csv.reader(input_file):
+    print(row)
+from numpy import array
+cube = array([[[0,0,0], [1,1,1], [2,2,2]],
+              [[3,3,3], [4,4,4], [5,5,5]],
+              [[6,6,6], [7,7,7], [8,8,8]]
+              ])
+print(cube[1,1,1])
+print(cube[2].transpose())
+print(cube[2,1,:])
+from numpy import linalg
+a = array([[4,0],[3,-5]])
+u, s, vt = linalg.svd(a)
+print(u)
+print(s)
+print(vt)
