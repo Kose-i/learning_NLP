@@ -79,6 +79,94 @@
 #        tags = data[word].keys()
 #        print(word, ' '.join(tags))
 
-P204
-import nltk
+#import nltk
+#pos = {}
+#print(pos)
+#pos['colorless'] = 'ADJ'
+#print(pos)
+#pos['ideas'] = 'NN'
+#pos['sleep'] = 'V'
+#pos['furiously'] = 'ADJ'
+#print(pos)
+#print(pos['ideas'])
+##print(pos['green']) # KeyERROR
+#print(list(pos))
+#print(sorted(pos))
+#print([w for w in pos if w.endswith('s')])
+#for word in sorted(pos):
+#    print(word + ":" + pos[word])
+#print(pos.keys())
+#print(pos.values())
+#print(pos.items())
+#for key, val in sorted(pos.items()):
+#    print(key+":"+val)
+#pos = {'colorless':'ADJ', 'ideas':'N', 'furiously':'ADJ'}
+#pos = dict(colorless='ADJ', ideas='N', furiously='ADJ')
+##pos = {['ideas', 'blogs', 'adventures']: 'N'} # TypeERROR
+#frequency = nltk.defaultdict(int)
+#frequency['colorless'] = 4
+#print(frequency['ideas'])
+#pos = nltk.defaultdict(list)
+#pos['sleep'] = ['N', 'V']
+#print(pos['ideas'])
+#pos = nltk.defaultdict(lambda: 'N')
+#pos['colorless'] = 'ADJ'
+#print(pos['blog'])
+#print(pos.items())
+#f = lambda: 'N'
+#print(f())
+#def g(): # Similar f()
+#    return 'N'
+#print(g())
+#alice = nltk.corpus.gutenberg.words('carroll-alice.txt')
+#vocab = nltk.FreqDist(alice)
+#v1000 = list(vocab)[:1000]
+#mapping = nltk.defaultdict(lambda: 'UNK')
+#for v in v1000:
+#    mapping[v] = v
+#alice2 = [mapping[v] for v in alice]
+#print(alice2[:100])
+#counts = nltk.defaultdict(int)
+#from nltk.corpus import brown
+#for (word, tag) in brown.tagged_words(categories='news'):
+#    counts[tag] += 1
+#print(counts['N'])
+#print(list(counts))
+#from operator import itemgetter
+#print(sorted(counts.items(), key=itemgetter(1), reverse=True))
+#print([t for t, c in sorted(counts.items(), key=itemgetter(1), reverse=True)])
+#pair = ('NP', 8336)
+#print(pair[1])
+#print(itemgetter(1)(pair))
+#last_letters = nltk.defaultdict(list)
+#words = nltk.corpus.words.words('en')
+#for word in words:
+#      key = word[-2:]
+#      last_letters[key].append(word)
+#print(last_letters['ly'])
+#print(last_letters['zy'])
+#anagrams = nltk.defaultdict(list)
+#for word in words:
+#    key = ''.join(sorted(word))
+#    anagrams[key].append(word)
+#print(anagrams['aeilnrt'])
+#anagrams = nltk.Index((''.join(sorted(w)), w) for w in words)
+#pos = nltk.defaultdict(lambda: nltk.defaultdict(int))
+#brown_news_tagged = brown.tagged_words(categories='news')
+#for ((w1, t1), (w2, t2)) in nltk.bigrams(brown_news_tagged):
+#    pos[(t1, w2)][t2] += 1
+#print(pos[('DET', 'right')])
+#counts = nltk.defaultdict(int)
+#for wrod in nltk.corpus.gutenberg.words('milton-paradise.txt'):
+#    counts[word] += 1
+#print([key for (key, value) in counts.items() if value==32])
+#pos = {'colorless':'ADJ', 'ideas':'N', 'sleep':'V', 'furiously':'ADJ'}
+#pos2 = dict((value, key) for (key, value) in pos.items())
+#print(pos2['N'])
+#pos.update({'cats':'N', 'scratch':'V', 'peacefully':'ADV', 'old':'ADJ'})
+#pos2 = nltk.defaultdict(list)
+#for key, value in pos.items():
+#    pos2[value].append(key)
+#print(pos2['ADJ'])
 
+# P214 Automation Tag
