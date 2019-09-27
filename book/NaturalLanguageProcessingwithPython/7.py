@@ -162,4 +162,69 @@
 #chunker = ConsecutiveNPChunker(train_sents)
 #print(chunker.evaluate(test_sents))
 
-#P296~
+#import nltk
+#grammar = r"""
+#  NP: {<DT|JJ|NN.*>+}          # Chunk sequences of DT, JJ, NN
+#  PP: {<IN><NP>}               # Chunk prepositions followed by NP
+#  VP: {<VB.*><NP|PP|CLAUSE>+$} # Chunk verbs and their arguments
+#  CLAUSE: {<NP><VP>}           # Chunk NP, VP
+#"""
+#cp = nltk.RegexpParser(grammar)
+#sentence = [("Mary", "NN"), ("saw", "VBD"), ("the", "DT"), ("cat", "NN"), ("sit", "VB"), ("on", "IN"), ("the", "DT"), ("mat", "NN")]
+#print(cp.parse(sentence))
+#sentence = [("John", "NNP"), ("thinks", "VBZ"), ("Mary", "NN"), ("saw", "VBD"), ("the", "DT"), ("cat", "NN"), ("sit", "VB"), ("on", "IN"), ("the", "DT"), ("mat", "NN")]
+#print(cp.parse(sentence))
+#cp = nltk.RegexpParser(grammar, loop=2)
+#print(cp.parse(sentence))
+#tree1 = nltk.Tree('NP', ['Alice'])
+#print(tree1)
+#tree2 = nltk.Tree('NP', ['the', 'Rabbit'])
+#print(tree2)
+#tree3 = nltk.Tree('VP', ['chased', tree2])
+#tree4 = nltk.Tree('S' , [tree1, tree3])
+#print(tree4[1])
+#print(tree4[1].label())
+#print(tree4.leaves())
+#print(tree4[1][1][1])
+#tree3.draw()
+#def traverse(t):
+#    try:
+#        t.label()
+#    except AttributeError:
+#        print(t)
+#    else:
+#        # None we know that t.label() is defined
+#        print('(', t.label(),)
+#        for child in t:
+#            traverse(child)
+#            print(')',)
+
+#import nltk
+#sent = nltk.corpus.treebank.tagged_sents()[22]
+#print(nltk.ne_chunk(sent, binary=True))
+#print(nltk.ne_chunk(sent))
+
+#import nltk, re
+#IN = re.compile(r'.*\bin\b(?!\b.+ing)')
+#for doc in nltk.corpus.ieer.parsed_docs('NYT_19980315'):
+#    #for rel in nltk.corpus.ieer.parsed_docs('ORG', 'LOC', doc, corpus='ieer', pattern=IN):
+#    for rel in  nltk.sem.extract_rels('ORG','LOC',doc,corpus='ieer',pattern=IN):
+#        #print(nltk.sem.show_raw_rtuple(rel))
+#        print(nltk.sem.relextract.rtuple(rel))
+#from nltk.corpus import conll2002
+#vnv = """
+#(
+#is/V|    # 3rd sing present and
+#was/V|   # past forms of the verb zijn ('be')
+#werd/V|  # and also present
+#wordt/V| # past of worden ('become')
+#)
+#.*       # followed by anything
+#van/Prep # followed by van ('of')
+#"""
+#VAN = re.compile(vnv, re.VERBOSE)
+#for doc in conll2002.chunked_sents('ned.train'):
+#    #for r in nltk.sem.extract_rels('PER', 'ORG', doc, corpus='conll2002', pattern=VAN):
+#    for r in  nltk.sem.extract_rels('PER','ORG',doc,corpus='conll2002',pattern=VAN):
+#        #print(nltk.sem.show_clause(r, relsym="VAN"))
+#        print(nltk.sem.clause(r, relsym="VAN"))
