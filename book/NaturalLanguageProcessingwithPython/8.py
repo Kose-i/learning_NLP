@@ -136,41 +136,57 @@
 #for tree in trees:
 #    print(tree)
 
-import nltk
-from nltk.corpus import treebank
-t = treebank.parsed_sents('wsj_0001.mrg')[0]
-print(t)
-def filter(tree):
-    child_nodes = [child.label() for child in tree if isinstance(child, nltk.Tree)]
-    return (tree.label() == 'VP') and ('S' in child_nodes)
-from nltk.corpus import treebank
-print([subtree for tree in treebank.parsed_sents() for subtree in tree.subtrees(filter)])
-entries = nltk.corpus.ppattach.attachments('training')
-table = nltk.defaultdict(lambda: nltk.defaultdict(set))
-for entry in entries:
-    key = entry.noun1 + '-' + entry.prep + '-' + entry.noun2
-    table[key][entry.attachment].add(entry.verb)
-for key in sorted(table):
-    if len(table[key]) > 1:
-        print(key, 'N:', sorted(table[key]['N']), 'V:', sorted(table[key]['V']))
-from nltk import CFG
-grammar = nltk.CFG.fromstring("""
-S -> NP V NP
-NP -> NP Sbar
-Sbar -> NP V
-NP -> 'fish'
-V -> 'fish'
-""")
-tokens = ["fish"]*5
-cp = nltk.ChartParser(grammar)
-for tree in next(cp.parse(tokens)):
-    print(tree)
-def give(t):
-    return t.label() == 'VP' and len(t) > 2 and t[1].label() == 'NP' and (t[2].label() == 'PP-DTV' or t[2].label() == 'NP') \
-           and ('give' in t[0].leaves() or 'gave' in t[0].leaves())
-def sent(t):
-    return ' '.join(token for token in t.leaves() if token[0] not in '*-0')
-#P339
-def print_node(t, width):
-    output = "%s %s: %s"
-
+#import nltk
+#from nltk.corpus import treebank
+#t = treebank.parsed_sents('wsj_0001.mrg')[0]
+#print(t)
+#def filter(tree):
+#    child_nodes = [child.label() for child in tree if isinstance(child, nltk.Tree)]
+#    return (tree.label() == 'VP') and ('S' in child_nodes)
+#from nltk.corpus import treebank
+#print([subtree for tree in treebank.parsed_sents() for subtree in tree.subtrees(filter)])
+#entries = nltk.corpus.ppattach.attachments('training')
+#table = nltk.defaultdict(lambda: nltk.defaultdict(set))
+#for entry in entries:
+#    key = entry.noun1 + '-' + entry.prep + '-' + entry.noun2
+#    table[key][entry.attachment].add(entry.verb)
+#for key in sorted(table):
+#    if len(table[key]) > 1:
+#        print(key, 'N:', sorted(table[key]['N']), 'V:', sorted(table[key]['V']))
+#from nltk import CFG
+#grammar = nltk.CFG.fromstring("""
+#S -> NP V NP
+#NP -> NP Sbar
+#Sbar -> NP V
+#NP -> 'fish'
+#V -> 'fish'
+#""")
+#tokens = ["fish"]*5
+#cp = nltk.ChartParser(grammar)
+#for tree in next(cp.parse(tokens)):
+#    print(tree)
+#def give(t):
+#    return t.label() == 'VP' and len(t) > 2 and t[1].label() == 'NP' and (t[2].label() == 'PP-DTV' or t[2].label() == 'NP') \
+#           and ('give' in t[0].leaves() or 'gave' in t[0].leaves())
+#def sent(t):
+#    return ' '.join(token for token in t.leaves() if token[0] not in '*-0')
+#def print_node(t, width):
+#    output = "%s %s: %s / %s: %s"%(sent(t[0]), t[1].label(), sent(t[1]), t[2].label(), sent(t[2]))
+#    if len(output) > width:
+#        output = output[:width] + "..."
+#    print(output)
+#from nltk import PCFG
+#grammar = PCFG.fromstring("""
+#S -> NP VP [1.0]
+#VP -> TV NP [0.4]
+#VP -> IV [0.3]
+#VP -> DatV NP NP [0.3]
+#IV -> 'ate' [1.0]
+#DatV -> 'gave' [1.0]
+#NP -> 'telescopes' [0.8]
+#NP -> 'Jack' [0.2]
+#""")
+#print(grammar)
+#from nltk import ViterbiParser
+#viterbi_parser = nltk.ViterbiParser(grammar)
+#print(viterbi_parser.parse(['Jack', 'saw', 'telescopes']))
