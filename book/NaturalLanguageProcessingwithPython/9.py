@@ -58,3 +58,24 @@
 #print(fs2.unify(fs1))
 
 import nltk
+nltk.data.show_cfg('grammars/book_grammars/feat1.fcfg')
+tokens = 'who do you claim that you like'.split()
+from nltk import load_parser
+cp = load_parser('grammars/book_grammars/feat1.fcfg')
+for tree in next(cp.parse(tokens)):
+    print(tree)
+tokens = 'you claim that you like cats'.split()
+for tree in next(cp.parse(tokens)):
+    print(tree)
+tokens = 'rarely do you sing'.split()
+for tree in next(cp.parse(tokens)):
+    print(tree)
+nltk.data.show_cfg('grammars/book_grammars/german.fcfg')
+tokens = 'ichfolge den Katzen'.split()
+cp = load_parser('grammars/book_grammars/german.fcfg')
+for tree in next(cp.parse(tokens)):
+    print(tree)
+tokens = 'ichfolge den Katzen'.split()
+cp = load_parser('grammars/book_grammars/german.fcfg', trace=2)
+for tree in next(cp.parse(tokens)):
+    print(tree)
