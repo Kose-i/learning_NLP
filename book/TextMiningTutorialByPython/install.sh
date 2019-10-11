@@ -9,3 +9,7 @@ sudo pip install gensim
 
 sudo pip install twython
 sudo pip install rpy2
+
+sudo pip install pydotplus
+
+
